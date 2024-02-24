@@ -32,7 +32,7 @@ rdata[0] = "MEM"
 
 out.write(timestamp + "," + host + "," + ",".join(rdata) + "\n")
 
-cpu = subprocess.run(['/root/cpuusage.sh'], stdout=subprocess.PIPE).stdout.decode("utf-8").replace('\n','')
+cpu = subprocess.run(['/root/stats/cpuusage.sh'], stdout=subprocess.PIPE).stdout.decode("utf-8").replace('\n','')
 # time,hostname,CPU,percentage
 out.write(timestamp + "," + host + ",CPU," + cpu + "%\n")
 
