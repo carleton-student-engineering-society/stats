@@ -14,7 +14,7 @@ first = True
 cur = datetime.now()
 timestamp = cur.strftime('%Y/%m/%d %H:%M:%S')
 
-out = open("/root/stats.csv", "a")
+out = open("/var/backups/stats.csv", "a")
 
 for line in storage.stdout.decode("utf-8").split('\n'):
     if first:
