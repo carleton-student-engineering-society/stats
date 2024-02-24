@@ -43,3 +43,4 @@ out.write(timestamp + "," + host + ",SERV," + status.split(":")[1][1:] + "\n")
 
 out.close()
 
+subprocess.run(['chown', 'backup:backup', '/var/backups/stats.csv'], stdout=subprocess.PIPE)
