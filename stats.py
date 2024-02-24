@@ -9,7 +9,7 @@ def rr(string: str) -> str:
 
 host = subprocess.run(['hostname'], stdout=subprocess.PIPE).stdout.decode("utf-8").replace('\n','')
 
-storage = subprocess.run(['zfs', 'list'], stdout=subprocess.PIPE)
+storage = subprocess.run(['df', '-h'], stdout=subprocess.PIPE)
 first = True
 cur = datetime.now()
 timestamp = cur.strftime('%Y/%m/%d %H:%M:%S')
@@ -22,8 +22,8 @@ for line in storage.stdout.decode("utf-8").split('\n'):
         continue
     if not line:
         continue
-    # time,hostname,ZFS,Dataset,Used,Avail,Refer,Mountpoint
-    out.write(timestamp + "," + host +",ZFS," + ",".join(rr(line).split(" ")) + "\n")
+    # time,hostname,DF,FS,size,used,avail,use%,mount
+    out.write(timestamp + "," + host +",DF," + ",".join(rr(line).split(" ")) + "\n")
 
 ram = subprocess.run(['free', '-h'], stdout=subprocess.PIPE)
 rdata = rr(ram.stdout.decode("utf-8").split('\n')[1]).split(" ")
